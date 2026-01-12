@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adnan Boota - Senior Full Stack Developer & AI Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #141b3d;
+            --bg-card: #1a2147;
+            --accent-1: #00d4ff;
+            --accent-2: #7c3aed;
+            --accent-3: #f59e0b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --success: #10b981;
+            --expert: #8b5cf6;
+            --advanced: #3b82f6;
+            --intermediate: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: float1 20s infinite ease-in-out;
+        }
+
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            animation: float2 15s infinite ease-in-out;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 100px) scale(1.1); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, -80px) scale(1.15); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent-1);
+            color: var(--accent-1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-1);
+            color: var(--bg-primary);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-1);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-1);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .level-expert {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--expert);
+        }
+
+        .level-advanced {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--advanced);
+        }
+
+        .level-intermediate {
+            background: rgba(6, 182, 212, 0.2);
+            color: var(--intermediate);
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 50px;
+            transition: width 1s ease;
+        }
+
+        .progress-expert {
+            background: linear-gradient(90deg, var(--expert), #a78bfa);
+        }
+
+        .progress-advanced {
+            background: linear-gradient(90deg, var(--advanced), #60a5fa);
+        }
+
+        .progress-intermediate {
+            background: linear-gradient(90deg, var(--intermediate), #22d3ee);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-1);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-1);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .link-demo {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+        }
+
+        .link-demo:hover {
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .link-github {
+            border: 2px solid var(--accent-1);
+            color: var(--accent-1);
+        }
+
+        .link-github:hover {
+            background: var(--accent-1);
+            color: var(--bg-primary);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+        }
+
+        .contact-details a {
+            color: var(--accent-1);
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border-color: transparent;
+            transform: translateY(-5px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AB</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-robot"></i> Available for AI/ML Projects
+            </div>
+            <h1>Adnan Boota</h1>
+            <p class="hero-subtitle">Senior Full Stack Developer | LLM Integration Specialist | AI Engineer</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> View Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">AI Integrations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="fas fa-code"></i> Technical Expertise</div>
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Comprehensive skill set with measurable proficiency levels</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- AI & ML Skills -->
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                        <div class="skill-title">AI & Machine Learning</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>LLM Integration & Fine-tuning</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>RAG & Vector Databases</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>TensorFlow & PyTorch</span>
+                            <span class="skill-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-advanced" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>LangChain & LlamaIndex</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Development -->
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
+                        <div class="skill-title">Backend Development</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Node.js & Express</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python (Django/FastAPI)</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>GraphQL & REST APIs</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 93%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>PostgreSQL & MongoDB</span>
+                            <span class="skill-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-advanced" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frontend Development -->
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                        <div class="skill-title">Frontend Development</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>React & Next.js</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 94%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>TypeScript</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 91%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Vue.js & Angular</span>
+                            <span class="skill-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-advanced" style="width: 82%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Tailwind CSS & UI Libraries</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 96%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevOps & Cloud -->
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-header">
+                        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                        <div class="skill-title">DevOps & Cloud</div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>AWS (EC2, Lambda, SageMaker)</span>
+                            <span class="skill-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-advanced" style="width: 87%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Docker & Kubernetes</span>
+                            <span class="skill-level level-advanced">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-advanced" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>CI/CD Pipelines</span>
+                            <span class="skill-level level-expert">Expert</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-expert" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Azure & Google Cloud</span>
+                            <span class="skill-level level-intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress progress-intermediate" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="fas fa-briefcase"></i> Portfolio</div>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Real-world applications with measurable impact</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Customer Support Platform</h3>
+                        <p class="project-description">Enterprise-grade customer support system powered by fine-tuned LLMs with RAG capabilities for accurate, context-aware responses.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">70%</div>
+                                <div class="metric-label">Response Time ↓</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">94%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">50K+</div>
+                                <div class="metric-label">Queries/Day</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="tag">GPT-4</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">React</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Pinecone</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="project-link link-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link link-github"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image" style="background: linear-gradient(135deg, #7c3aed, #f59e0b);">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Enterprise RAG System</h3>
+                        <p class="project-description">Intelligent document analysis system with semantic search across 100K+ documents using advanced vector embeddings.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">100K+</div>
+                                <div class="metric-label">Documents</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">2.5s</div>
+                                <div class="metric-label">Avg Search</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">91%</div>
+                                <div class="metric-label">Relevance</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="tag">Claude</span>
+                            <span class="tag">Weaviate</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">AWS</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="project-link link-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link link-github"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Custom LLM Fine-tuning Pipeline</h3>
+                        <p class="project-description">Automated pipeline for fine-tuning open-source LLMs on domain-specific data with LoRA optimization techniques.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">60%</div>
+                                <div class="metric-label">Hallucinations ↓</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">94%</div>
+                                <div class="metric-label">Domain Accuracy</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">15+</div>
+                                <div class="metric-label">Models Trained</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Hugging Face</span>
+                            <span class="tag">LoRA</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Kubernetes</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="project-link link-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link link-github"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image" style="background: linear-gradient(135deg, #06b6d4, #8b5cf6);">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI Code Review Assistant</h3>
+                        <p class="project-description">Intelligent code review tool that analyzes PRs, suggests improvements, and identifies bugs using GPT-4 integration.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">85%</div>
+                                <div class="metric-label">Bug Detection</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">40%</div>
+                                <div class="metric-label">Review Time ↓</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">1000+</div>
+                                <div class="metric-label">PRs Reviewed</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="tag">GPT-4</span>
+                            <span class="tag">GitHub API</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Actions</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="project-link link-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link link-github"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Real-time Analytics Dashboard</h3>
+                        <p class="project-description">High-performance analytics platform processing 10M+ events daily with AI-powered insights and predictions.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">10M+</div>
+                                <div class="metric-label">Events/Day</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">&lt;100ms</div>
+                                <div class="metric-label">Latency</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">99.9%</div>
+                                <div class="metric-label">Uptime</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">WebSocket</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="project-link link-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link link-github"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI-Powered E-commerce Platform</h3>
+                        <p class="project-description">Next-gen e-commerce with personalized recommendations, smart search, and chatbot assistance powered by LLMs.</p>
+                        
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <div class="metric-value">45%</div>
+                                <div class="metric-label">Conversion ↑</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3.2x</div>
+                                <div class="metric-label">Engagement</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">$2M+</div>
+                                <div class="metric-label">Revenue</div>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Stripe</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">OpenAI</span>
+                            <span class="tag">Tailwind</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="#" class="project-link link-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="project-link link-github"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge"><i class="fas fa-envelope"></i> Get In Touch</div>
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Have a project in mind? Let's discuss how we can collaborate</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p><a href="mailto:adnan.boota@example.com">adnan.boota@example.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+923001234567">+92 300 1234567</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Karachi, Pakistan</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Availability</h3>
+                            <p>Open to Remote & Contract Work</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links animate-on-scroll">
+                        <a href="https://github.com/adnanboota" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/adnanboota" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/adnanboota" class="social-link" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://dev.to/adnanboota" class="social-link" target="_blank">
+                            <i class="fab fa-dev"></i>
+                        </a>
+                        <a href="https://stackoverflow.com/users/adnanboota" class="social-link" target="_blank">
+                            <i class="fab fa-stack-overflow"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form animate-on-scroll">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Adnan Boota. All rights reserved.</p>
+                <p>Built with passion for AI, modern web technologies, and clean code</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate skill bars when they come into view
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card').forEach(card => {
+            skillObserver.observe(card);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--accent-1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+                        
